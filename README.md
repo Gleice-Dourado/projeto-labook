@@ -68,7 +68,7 @@ $ npm run dev
 
 ## Tecnologias Utilizadas
 
-1. TypeScript
+1. TypeScript 
 2. [Node.js](https://nodejs.org/en)
 3. [Express](https://expressjs.com/pt-br/)
 4. SQL
