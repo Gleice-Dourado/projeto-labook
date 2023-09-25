@@ -26,7 +26,7 @@ Para as postagens, a API permite a criação, busca, edição, exclusão, curtid
  - [x]  Get posts 
  - [x]  Edit post by ID
  - [x]  Delete post by ID
-  - [x]  Get post by ID
+ - [x]  Get post by ID
  - [x]  Like and dislike post by ID
 
   
@@ -48,7 +48,43 @@ $ npm install
 # Execute a aplicação
 $ npm run dev
 
+## Application endpoints
 
+1. Endpoints for the users table:
+ - Get users: 
+    - app.get => 'http://localhost:3003/users';
+ - Signup
+    - app.post => 'http://localhost:3003/users/signup';
+ - Login
+    - app.post => 'http://localhost:3003/users/login'.
+
+2. Endpoints for the posts table:
+ - Create post
+    - app.post => 'http://localhost:3003/posts';
+ - Get posts
+    - app.get => 'http://localhost:3003/posts';
+ - Edit post by id
+    - app.put =>'http://localhost:3003/posts/:id';
+ - Delete post by id
+    - app.delete => 'http://localhost:3003/posts/:id';
+ - Like and dislike post by id
+    - app.put => 'http://localhost:3003/posts/:id/like'.
+
+
+1. TypeScript
+2. [Node.js](https://nodejs.org/en)
+3. [Express](https://expressjs.com/pt-br/)
+4. SQL
+5. [SQLite](https://www.sqlite.org/index.html)
+6. [Knex](https://knexjs.org/)
+7. Object-Oriented Programming (OOP)
+8. [UUID](https://www.uuidgenerator.net/)
+9. [Zod](https://zod.dev/)
+10. [Json Web Token](https://jwt.io/)
+11. Layered Architecture
+
+## Developer
+[LinkedIn](https://www.linkedin.com/in/gleicielen-dourado/)
 
 
 
