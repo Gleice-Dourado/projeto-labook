@@ -1,6 +1,6 @@
 # Labook API
 
-![API-Documentation](./caminho-para-imagem.png)
+![API-Documentation](./src/assets/labook.png)
 
 API para gerenciar o banco de dados de uma rede social, incluindo usuários e postagens.
 
@@ -12,11 +12,10 @@ Para as postagens, a API permite a criação, busca, edição, exclusão, curtid
 
 ## Índice
 - <a href="#funcionalidades">Funcionalidades da Aplicação</a>
-- <a href="#demonstracao">Demonstração</a>
 - <a href="#executar">Como Executar a Aplicação</a>
 - <a href="#endpoints">Endpoints da Aplicação</a>
 - <a href="#tecnologias-utilizadas">Tecnologias Utilizadas</a>
-- <a href="#desenvolvedor">Desenvolvedor</a>
+- <a href="#desenvolvedor">Desenvolvedor(a)</a>
 
 ## Funcionalidades da Aplicação
  - [x]  Signup  
@@ -29,10 +28,6 @@ Para as postagens, a API permite a criação, busca, edição, exclusão, curtid
  - [x]  Get post by ID
  - [x]  Like and dislike post by ID
 
-  
-## Demonstração
-
-![Demonstração](./caminho-para-imagem-da-demonstracao.png)
 
 ## Como Executar a Aplicação
 ```bash
@@ -47,6 +42,7 @@ $ npm install
 
 # Execute a aplicação
 $ npm run dev
+```
 
 ## Application endpoints
 
