@@ -83,5 +83,3 @@ $ npm run dev
 [LinkedIn](https://www.linkedin.com/in/gleicielen-dourado/)
 
 
-
-
