@@ -11,7 +11,7 @@ export interface TokenPayload {
 };
 
 export class TokenManager {
-    public createToken(payload:TokenPayload): string {
+    public createToken(payload: TokenPayload): string {
         const token = jwt.sign(
             payload,
             process.env.JWT_KEY as string,
@@ -23,7 +23,7 @@ export class TokenManager {
         return token
     };
 
-    public getPayload(token:string): TokenPayload | null {
+    public getPayload(token: string): TokenPayload | null {
         try {
             const payload = jwt.verify(token, process.env.JWT_KEY as string);
 
@@ -31,6 +31,8 @@ export class TokenManager {
 
         } catch (error) {
             return null
-        }
+        };
+
+
     }
 }

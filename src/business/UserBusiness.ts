@@ -19,7 +19,7 @@ export class UserBusiness {
         private idGenerator: IdGenerator,
         private tokenManager: TokenManager,
         private hashManager: HashManager
-    ){}
+    ) { }
 
 
     public getUsers = async (input: GetUsersInputDTO): Promise<GetUsersOutputDTO[]> => {
@@ -48,14 +48,14 @@ export class UserBusiness {
         return users;
     }
 
-    public signup = async (input:SignupInputDTO):Promise<SignupOutputDTO> => {
-      
-        const {name, email, password} = input
+    public signup = async (input: SignupInputDTO): Promise<SignupOutputDTO> => {
+
+        const { name, email, password } = input
 
         const id = this.idGenerator.generate()
 
-        if(!name || !email || !password){
-           throw new Error("Todos os dados devem ser preenchidos.")
+        if (!name || !email || !password) {
+            throw new Error("Todos os dados devem ser preenchidos.")
         }
 
         const userDBExists = await this.userDatabase.findUserById(id)
@@ -74,7 +74,7 @@ export class UserBusiness {
             USER_ROLES.NORMAL,
             new Date().toISOString()
         ) // yyyy-mm-ddThh:mm:sssZ
-        
+
         const newUserDB: UserDB = {
             id: newUser.getId(),
             name: newUser.getName(),
@@ -89,7 +89,7 @@ export class UserBusiness {
         const tokenPayload: TokenPayload = {
             id: newUser.getId(),
             name: newUser.getName(),
-            role:USER_ROLES.NORMAL
+            role: USER_ROLES.NORMAL
         }
 
         const token = this.tokenManager.createToken(tokenPayload)
@@ -100,50 +100,50 @@ export class UserBusiness {
         }
 
         return output
-       
+
     }
 
-    public editUser = async (input:any):Promise<any> => {
-        const {id, name, email, password, role} = input;
+    public editUser = async (input: any): Promise<any> => {
+        const { id, name, email, password, role } = input;
 
-      
-        if(id[0] !== 'u'){
+
+        if (id[0] !== 'u') {
             throw new BadRequestError('"id" must start with the letter "u".')
         };
-       
-        if(name){
-            if(typeof name !== 'string' || name.length<0 || name === " "){
+
+        if (name) {
+            if (typeof name !== 'string' || name.length < 0 || name === " ") {
                 throw new BadRequestError('"name" must be a string.')
             };
         };
 
-        if(email){
-            if(!email.match("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$")){
+        if (email) {
+            if (!email.match("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$")) {
                 throw new BadRequestError('Email invalid. Try again.')
             }
         };
 
-        if(password){
-            if(!password.match(/^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,10}$/g)){
+        if (password) {
+            if (!password.match(/^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,10}$/g)) {
                 throw new BadRequestError('Password invalid. It must have from six to ten characters, with uppercase and lowercase letters and one special character. Try again.')
             }
         };
 
-        
+
 
         const checkUserId = await this.userDatabase.findUserById(id);
-        const checkUserEmail  = await this.userDatabase.findEmail(email);
+        const checkUserEmail = await this.userDatabase.findEmail(email);
 
-        if(!checkUserId){
+        if (!checkUserId) {
             throw new NotFoundError('The "id" is not registered.')
         };
         console.log(checkUserId)
-        if(email){
-            if(checkUserId.email !== checkUserEmail.email){
+        if (email) {
+            if (checkUserId.email !== checkUserEmail.email) {
                 throw new BadRequestError('The email is already registered.')
             }
         };
-        
+
         const editedUser: User = new User(
             id,
             name || checkUserId.name,
@@ -178,6 +178,7 @@ export class UserBusiness {
         return output
     };
 
+ 
     public login = async (email: string, password: string): Promise<LoginOutputDTO> => {
         const userDB = await this.userDatabase.findEmail(email);
 
@@ -191,10 +192,16 @@ export class UserBusiness {
             throw new Error('Senha incorreta');
         }
 
+        let userRole = USER_ROLES.NORMAL;
+
+        if (userDB.role === USER_ROLES.ADMIN) {
+            userRole = USER_ROLES.ADMIN;
+        }
+
         const tokenPayload: TokenPayload = {
             id: userDB.id,
             name: userDB.name,
-            role:USER_ROLES.NORMAL
+            role: userRole
         };
 
         const token = this.tokenManager.createToken(tokenPayload);
