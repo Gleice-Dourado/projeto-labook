@@ -44,7 +44,7 @@ $ npm install
 $ npm run dev
 ```
 
-## Application endpoints
+## Endpoints da Aplicação
 
 1. Endpoints for the users table:
  - Get users: 
@@ -66,6 +66,7 @@ $ npm run dev
  - Like and dislike post by id
     - app.put => 'http://localhost:3003/posts/:id/like'.
 
+## Tecnologias Utilizadas
 
 1. TypeScript
 2. [Node.js](https://nodejs.org/en)
@@ -79,7 +80,7 @@ $ npm run dev
 10. [Json Web Token](https://jwt.io/)
 11. Layered Architecture
 
-## Developer
+## Desenvolvedor(a)
 [LinkedIn](https://www.linkedin.com/in/gleicielen-dourado/)
 
 
